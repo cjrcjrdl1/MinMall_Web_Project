@@ -1,2 +1,4 @@
-# MinMall_Web_Project
-MinMall_Web_Project
+# Min_Community
+
+Min_Community
+
