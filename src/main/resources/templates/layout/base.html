@@ -1,15 +1,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="common_header(title)">
-    <title th:title="${title}">레이아웃 타이틀</title>
+    <title th:replace="${title}">레이아웃 타이틀</title>
     <!-- 공통 -->
-<!--    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">-->
-<!--    <link rel="stylesheet" th:href="@{/css/bootstrap-theme.css}">-->
-<!--    <link rel="stylesheet" th:href="@{/js/bootstrap.js}">-->
-<!--    <link rel="stylesheet" th:href="@{/js/npm.js}">-->
-<!--    <link rel="stylesheet" th:href="@{/fonts/glyphicons-halflings-regular.ttf}">-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- 추가 -->
 <!--    <th:block th:replace="${links}"/>-->

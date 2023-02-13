@@ -1,9 +1,6 @@
 package min.community.domain.posts;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +12,7 @@ import min.community.domain.BaseTimeEntity;
 public class Posts extends BaseTimeEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "post_id")
     private Long id;
 
