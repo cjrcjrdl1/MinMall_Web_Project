@@ -13,6 +13,23 @@
         </div>
     </div>
 </div>
+<br>
+<table class="table table-horizontal table-bordered">
+    <thead class="thead-strong">
+    <tr>
+        <th>게시글번호</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>최종수정일</th>
+    </tr>
+    </thead>
+    <tbody id="tbody" th:each="post : ${posts}">
+        <td th:text="${post.id}">id</td>
+        <td th:text="${post.title}">title</td>
+        <td th:text="${post.author}">author</td>
+        <td th:text="${post.modifiedDate}">modifiedDate</td>
+    </tbody>
+</table>
 <script src="/js/app/index.js"></script>
 </body>
 </html>
