@@ -1,4 +1,4 @@
-package min.community.login;
+package min.community;
 
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
