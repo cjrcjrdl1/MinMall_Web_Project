@@ -1,8 +1,8 @@
-package min.community.web;
+package min.community.web.posts;
 
 import lombok.RequiredArgsConstructor;
 import min.community.service.PostsService;
-import min.community.web.dto.PostsResponseDto;
+import min.community.web.posts.dto.PostsResponseDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 @RequestMapping("/posts")
 @Controller
-public class PostController {
+public class PostsController {
 
     private final PostsService postsService;
 

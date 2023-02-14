@@ -1,10 +1,10 @@
-package min.community.web.dto;
+package min.community.web.posts.dto;
 
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Getter
+@Data
 @NoArgsConstructor
 public class PostsUpdateRequestDto {
     private String title;

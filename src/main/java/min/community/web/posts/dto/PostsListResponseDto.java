@@ -1,11 +1,9 @@
-package min.community.web.dto;
+package min.community.web.posts.dto;
 
-import lombok.Getter;
+import lombok.Data;
 import min.community.domain.posts.Posts;
 
-import java.time.LocalDateTime;
-
-@Getter
+@Data
 public class PostsListResponseDto {
     private Long id;
     private String title;

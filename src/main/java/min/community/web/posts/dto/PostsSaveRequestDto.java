@@ -1,11 +1,11 @@
-package min.community.web.dto;
+package min.community.web.posts.dto;
 
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import min.community.domain.posts.Posts;
 
-@Getter
+@Data
 @NoArgsConstructor
 public class PostsSaveRequestDto {
     private String title;

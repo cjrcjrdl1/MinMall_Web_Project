@@ -1,10 +1,10 @@
-package min.community.web;
+package min.community.web.posts;
 
 import lombok.RequiredArgsConstructor;
 import min.community.service.PostsService;
-import min.community.web.dto.PostsResponseDto;
-import min.community.web.dto.PostsSaveRequestDto;
-import min.community.web.dto.PostsUpdateRequestDto;
+import min.community.web.posts.dto.PostsResponseDto;
+import min.community.web.posts.dto.PostsSaveRequestDto;
+import min.community.web.posts.dto.PostsUpdateRequestDto;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor

@@ -2,10 +2,9 @@ package min.community.web;
 
 import min.community.domain.posts.Posts;
 import min.community.domain.posts.PostsRepository;
-import min.community.web.dto.PostsSaveRequestDto;
-import min.community.web.dto.PostsUpdateRequestDto;
+import min.community.web.posts.dto.PostsSaveRequestDto;
+import min.community.web.posts.dto.PostsUpdateRequestDto;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,7 +18,6 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class PostsApiControllerTest {

@@ -3,15 +3,13 @@ package min.community.service;
 import lombok.RequiredArgsConstructor;
 import min.community.domain.posts.Posts;
 import min.community.domain.posts.PostsRepository;
-import min.community.web.dto.PostsListResponseDto;
-import min.community.web.dto.PostsResponseDto;
-import min.community.web.dto.PostsSaveRequestDto;
-import min.community.web.dto.PostsUpdateRequestDto;
+import min.community.web.posts.dto.PostsListResponseDto;
+import min.community.web.posts.dto.PostsResponseDto;
+import min.community.web.posts.dto.PostsSaveRequestDto;
+import min.community.web.posts.dto.PostsUpdateRequestDto;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
