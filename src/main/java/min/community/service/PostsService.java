@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 @Service
 public class PostsService {
     private final PostsRepository postsRepository;
@@ -40,7 +41,6 @@ public class PostsService {
         return new PostsResponseDto(entity);
     }
 
-    @Transactional(readOnly = true)
     public List<PostsListResponseDto> findAll() {
 //        List<Posts> posts = postsRepository.findAll();
 //        List<PostsResponseDto> responseDtos = new ArrayList<>();
@@ -56,7 +56,6 @@ public class PostsService {
                 .collect(Collectors.toList());
     }
 
-    @Transactional(readOnly = true)
     public List<PostsListResponseDto> findAllDesc() {
         return postsRepository.findAllDesc().stream()
                 .map(PostsListResponseDto::new)

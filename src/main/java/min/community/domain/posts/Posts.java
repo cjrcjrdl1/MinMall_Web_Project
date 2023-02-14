@@ -1,6 +1,7 @@
 package min.community.domain.posts;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,10 +17,13 @@ public class Posts extends BaseTimeEntity {
     @Column(name = "post_id")
     private Long id;
 
-    @Column(length = 500, nullable = false)
+    @NotNull
+    @Column(length = 500)
     private String title;
 
-    @Column(columnDefinition = "TEXT", nullable = false)
+
+    @NotNull
+    @Column(columnDefinition = "TEXT")
     private String content;
 
     private String author;
