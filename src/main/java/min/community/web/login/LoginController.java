@@ -1,9 +1,11 @@
 package min.community.web.login;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import min.community.domain.member.Member;
-import min.community.login.LoginService;
+import min.community.service.LoginService;
 import min.community.web.login.dto.LoginDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -25,7 +27,7 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String login(@Validated @ModelAttribute("login") LoginDto login, BindingResult bindingResult) {
+    public String login(@Validated @ModelAttribute("login") LoginDto login, BindingResult bindingResult, HttpServletResponse response) {
         if (bindingResult.hasErrors()) {
             return "login/loginForm";
         }
@@ -39,6 +41,21 @@ public class LoginController {
             return "login/loginForm";
         }
 
+        Cookie idCookie = new Cookie("memberId", String.valueOf(loginMember.getId()));
+        response.addCookie(idCookie);
+
         return "redirect:/";
+    }
+
+    @PostMapping("/logout")
+    public String logout(HttpServletResponse response) {
+        expireCookie(response, "memberId");
+        return "redirect:/";
+    }
+
+    private void expireCookie(HttpServletResponse response, String cookieName) {
+        Cookie cookie = new Cookie(cookieName, null);
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
     }
 }
