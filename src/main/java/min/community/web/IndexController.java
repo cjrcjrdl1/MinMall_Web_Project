@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import min.community.domain.posts.Posts;
 import min.community.domain.posts.PostsRepository;
 import min.community.service.PostsService;
+import min.community.web.dto.PostsResponseDto;
 import min.community.web.dto.PostsSaveRequestDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +23,7 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(Model model) {
-        List<Posts> posts = postsRepository.findAll();
+        List<PostsResponseDto> posts = postsService.findAll();
         model.addAttribute("posts", posts);
         return "index";
     }

@@ -9,6 +9,10 @@ import min.community.web.dto.PostsUpdateRequestDto;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class PostsService {
@@ -32,5 +36,17 @@ public class PostsService {
         Posts entity = postsRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
         return new PostsResponseDto(entity);
+    }
+
+    public List<PostsResponseDto> findAll() {
+        List<Posts> posts = postsRepository.findAll();
+        List<PostsResponseDto> responseDtos = new ArrayList<>();
+
+        for (Posts post : posts) {
+            PostsResponseDto postsResponseDto = new PostsResponseDto(post);
+            responseDtos.add(postsResponseDto);
+        }
+
+        return responseDtos;
     }
 }
