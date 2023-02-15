@@ -1,8 +1,8 @@
 package min.community.web.posts;
 
 import lombok.RequiredArgsConstructor;
-import min.community.service.PostsService;
-import min.community.web.posts.dto.PostsResponseDto;
+import min.community.domain.posts.Posts;
+import min.community.domain.posts.PostsRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,16 +10,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Optional;
+
 @RequiredArgsConstructor
 @RequestMapping("/posts")
 @Controller
 public class PostsController {
 
-    private final PostsService postsService;
+    private final PostsRepository postsRepository;
 
     @GetMapping
     public String index(Model model) {
-        model.addAttribute("posts", postsService.findAllDesc());
+        model.addAttribute("posts", postsRepository.findAllDesc());
         return "posts/postsList";
     }
 
@@ -35,7 +37,7 @@ public class PostsController {
 
     @GetMapping("/update/{id}")
     public String postsUpdate(@PathVariable Long id, Model model) {
-        PostsResponseDto dto = postsService.findById(id);
+        Optional<Posts> dto = postsRepository.findById(id);
         model.addAttribute("post", dto);
 
         return "posts/postsUpdate";

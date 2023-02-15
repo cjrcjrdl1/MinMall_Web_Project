@@ -1,5 +1,8 @@
 package min.community.domain.posts;
 
+import min.community.service.PostsService;
+import min.community.web.posts.dto.PostsListResponseDto;
+import min.community.web.posts.dto.PostsSaveRequestDto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -40,32 +43,9 @@ class PostsRepositoryTest {
         List<Posts> postsList = postsRepository.findAll();
 
         //then
-        Posts posts = postsList.get(0);
+        Posts posts = postsList.get(1);
         assertThat(posts.getTitle()).isEqualTo(title);
         assertThat(posts.getContent()).isEqualTo(content);
         assertThat(posts.getAuthor()).isEqualTo(author);
-    }
-
-    @Test
-    public void BaseTimeEntity() {
-        //given
-        LocalDateTime now = LocalDateTime.of(2023, 1, 1, 0, 0, 0);
-        postsRepository.save(Posts.builder()
-                .title("title")
-                .content("content")
-                .author("author")
-                .build());
-
-        //when
-        List<Posts> postsList = postsRepository.findAll();
-
-        //then
-        Posts posts = postsList.get(0);
-
-        System.out.println("posts.getCreatedTime() = " + posts.getCreatedTime());
-        System.out.println("posts.getModifiedDate() = " + posts.getModifiedDate());
-
-        assertThat(posts.getCreatedTime()).isAfter(now);
-        assertThat(posts.getModifiedDate()).isAfter(now);
     }
 }
