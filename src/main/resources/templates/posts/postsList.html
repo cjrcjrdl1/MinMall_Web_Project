@@ -21,6 +21,7 @@
         <th>제목</th>
         <th>작성자</th>
         <th>최종수정일</th>
+        <th>조회수</th>
     </tr>
     </thead>
     <tbody id="tbody" th:each="post : ${posts}">
@@ -28,6 +29,7 @@
         <td><a th:href="@{/posts/update/{id}(id=${post.id})}"><span th:text="${post.title}">title</span></a></td>
         <td th:text="${post.author}">author</td>
         <td th:text="${post.modifiedDate}">modifiedDate</td>
+        <td th:text="${post.view}">0</td>
     </tbody>
 </table>
 <script src="/js/app/index.js"></script>

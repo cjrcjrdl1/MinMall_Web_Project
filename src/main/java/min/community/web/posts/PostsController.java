@@ -3,6 +3,7 @@ package min.community.web.posts;
 import lombok.RequiredArgsConstructor;
 import min.community.domain.posts.Posts;
 import min.community.domain.posts.PostsRepository;
+import min.community.service.PostsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,7 @@ import java.util.Optional;
 @Controller
 public class PostsController {
 
+    private final PostsService postsService;
     private final PostsRepository postsRepository;
 
     @GetMapping
@@ -38,8 +40,11 @@ public class PostsController {
     @GetMapping("/update/{id}")
     public String postsUpdate(@PathVariable Long id, Model model) {
         Optional<Posts> dto = postsRepository.findById(id);
+        postsService.updateView(id);
         model.addAttribute("post", dto);
 
         return "posts/postsUpdate";
     }
+
+
 }
