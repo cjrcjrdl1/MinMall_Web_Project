@@ -7,6 +7,8 @@ import min.community.web.posts.dto.PostsListResponseDto;
 import min.community.web.posts.dto.PostsResponseDto;
 import min.community.web.posts.dto.PostsSaveRequestDto;
 import min.community.web.posts.dto.PostsUpdateRequestDto;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -71,5 +73,9 @@ public class PostsService {
     @Transactional
     public int updateView(Long id) {
         return postsRepository.updateView(id);
+    }
+
+    public Page<Posts> pageList(Pageable pageable) {
+        return postsRepository.findAll(pageable);
     }
 }
