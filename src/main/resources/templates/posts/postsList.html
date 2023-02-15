@@ -5,15 +5,12 @@
     <title>민 커뮤니티</title>
 </head>
 <body>
+<div id="header">
 <h1>민 커뮤니티</h1>
-<div class="col-md-12">
-    <div class="row">
-        <div class="col-md-6">
-            <a href="/posts/save" role="button" class="btn btn-primary">등록</a>
-        </div>
-    </div>
+
 </div>
 <br>
+<div id="posts_list">
 <table class="table table-horizontal table-bordered">
     <thead class="thead-strong">
     <tr>
@@ -33,7 +30,7 @@
     </tbody>
 </table>
 
-<div class="pagination justify-content-center">
+<div style="display: inline-block" class="pagination justify-content-center">
     <th:block th:unless="${hasPrev}">
         <a th:href="@{/posts(page=${previous})}" role="button" class="btn btn-outline-dark disabled">이전 페이지</a>
     </th:block>
@@ -47,6 +44,13 @@
     <th:block th:if="${hasNext}">
         <a th:href="@{/posts(page=${next})}" role="button" class="btn btn-outline-dark">다음 페이지</a>
     </th:block>
+</div >
+
+    <div id="write">
+        <a href="/posts/save" role="button" class="btn btn-primary">글쓰기</a>
+    </div>
+
+
 </div>
 <script src="/js/app/index.js"></script>
 </body>
