@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import min.community.domain.posts.Posts;
 import min.community.domain.posts.PostsRepository;
 import min.community.service.PostsService;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -27,10 +28,12 @@ public class PostsController {
     @GetMapping
     public String index(Model model,
                         @PageableDefault(sort = "id", direction = Sort.Direction.DESC)Pageable pageable) {
-//        model.addAttribute("posts", postsRepository.findAllDesc());
-        model.addAttribute("posts", postsService.pageList(pageable));
+        Page<Posts> posts = postsService.pageList(pageable);
+        model.addAttribute("posts", posts);
         model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
         model.addAttribute("next", pageable.next().getPageNumber());
+        model.addAttribute("hasNext", posts.hasNext());
+        model.addAttribute("hasPrev", posts.hasPrevious());
         return "posts/postsList";
     }
 

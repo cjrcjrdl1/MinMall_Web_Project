@@ -34,8 +34,19 @@
 </table>
 
 <div class="pagination justify-content-center">
-    <a th:href="@{/posts(page=${previous})}" role="button" class="btn btn-outline-dark">이전 페이지</a>
-    <a th:href="@{/posts(page=${next})}" role="button" class="btn btn-outline-dark">다음 페이지</a>
+    <th:block th:unless="${hasPrev}">
+        <a th:href="@{/posts(page=${previous})}" role="button" class="btn btn-outline-dark disabled">이전 페이지</a>
+    </th:block>
+    <th:block th:if="${hasPrev}">
+        <a th:href="@{/posts(page=${previous})}" role="button" class="btn btn-outline-dark">이전 페이지</a>
+    </th:block>
+
+    <th:block th:unless="${hasNext}">
+        <a th:href="@{/posts(page=${next})}" role="button" class="btn btn-outline-dark disabled">다음 페이지</a>
+    </th:block>
+    <th:block th:if="${hasNext}">
+        <a th:href="@{/posts(page=${next})}" role="button" class="btn btn-outline-dark">다음 페이지</a>
+    </th:block>
 </div>
 <script src="/js/app/index.js"></script>
 </body>
