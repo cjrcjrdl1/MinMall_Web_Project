@@ -48,12 +48,20 @@ public class PostsController {
     }
 
     @GetMapping("/read/{id}")
-    public String postsURead(@PathVariable Long id, Model model) {
+    public String postsRead(@PathVariable Long id, Model model) {
         Optional<Posts> dto = postsRepository.findById(id);
-        postsService.updateView(id);
         model.addAttribute("post", dto);
 
         return "posts/postsRead";
+    }
+
+    @GetMapping("/update/{id}")
+    public String update(@PathVariable Long id, Model model) {
+        Optional<Posts> dto = postsRepository.findById(id);
+        postsService.updateView(id);
+        model.addAttribute("post", dto);
+        model.addAttribute("id", id);
+        return "posts/postsUpdate";
     }
 
 
