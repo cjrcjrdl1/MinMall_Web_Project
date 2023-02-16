@@ -30,7 +30,7 @@ public class Posts extends BaseTimeEntity {
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    @Column(nullable = false)
+    @Column
     private String author;
 
     @Column(columnDefinition = "integer default 0", nullable = false)

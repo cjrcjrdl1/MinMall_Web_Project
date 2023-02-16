@@ -26,5 +26,10 @@ public class MemberService {
         return new MemberResponseDto(entity);
     }
 
+    public MemberResponseDto findByName(String name) {
+        Member entity = memberRepository.findByName(name);
+        return new MemberResponseDto(entity);
+    }
+
 
 }

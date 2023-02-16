@@ -17,7 +17,6 @@ public class PostsRequestDto {
     private String title;
     private String content;
     private String author;
-
     private int view;
     private Member member;
 

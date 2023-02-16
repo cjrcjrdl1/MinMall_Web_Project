@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import min.community.domain.BaseTimeEntity;
+import min.community.domain.posts.Posts;
 
 @Getter
 @NoArgsConstructor
@@ -16,12 +17,16 @@ public class Member extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "member_id")
     private Long id;
-
+    @Column(nullable = false)
     private String loginId;
+
+    @Column(nullable = false, unique = true)
     private String name;
+
+    @Column(nullable = false)
     private String password;
+
 
     @Builder
     public Member(String loginId, String name, String password) {

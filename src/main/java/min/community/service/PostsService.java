@@ -23,11 +23,11 @@ public class PostsService {
     private final MemberRepository memberRepository;
 
     @Transactional
-    public Long save(String name, PostsRequestDto requestDto) {
+    public Long save(String name, PostsRequestDto dto) {
         Member member = memberRepository.findByName(name);
-        requestDto.setMember(member);
+        dto.setMember(member);
 
-        Posts posts = requestDto.toEntity();
+        Posts posts = dto.toEntity();
         postsRepository.save(posts);
 
         return posts.getId();

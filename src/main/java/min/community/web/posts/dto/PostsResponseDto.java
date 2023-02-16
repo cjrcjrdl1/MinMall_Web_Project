@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import min.community.domain.member.Member;
 import min.community.domain.posts.Posts;
 
 @Data
@@ -17,6 +18,7 @@ public class PostsResponseDto {
     private String content;
     private String author;
     private int view;
+    private Member member;
 
 
     public PostsResponseDto(Posts entity) {
@@ -25,5 +27,6 @@ public class PostsResponseDto {
         this.content = entity.getContent();
         this.author = entity.getAuthor();
         this.view = entity.getView();
+        this.member = entity.getMember();
     }
 }

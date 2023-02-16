@@ -1,9 +1,11 @@
 package min.community.web.posts;
 
 import lombok.RequiredArgsConstructor;
+import min.community.domain.member.Member;
 import min.community.domain.posts.Posts;
 import min.community.domain.posts.PostsRepository;
 import min.community.service.PostsService;
+import min.community.web.member.dto.MemberRequestDto;
 import min.community.web.member.dto.MemberResponseDto;
 import min.community.web.posts.dto.PostsResponseDto;
 import org.springframework.data.domain.Page;
@@ -12,10 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RequestMapping("/posts")
@@ -27,8 +26,13 @@ public class PostsController {
 
     @GetMapping
     public String index(Model model,
-                        @PageableDefault(sort = "id", direction = Sort.Direction.DESC)Pageable pageable) {
+                        @PageableDefault(sort = "id", direction = Sort.Direction.DESC)Pageable pageable, Member member) {
         Page<Posts> posts = postsService.pageList(pageable);
+
+        if (member != null) {
+            model.addAttribute("member", member);
+        }
+
         model.addAttribute("posts", posts);
         model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
         model.addAttribute("next", pageable.next().getPageNumber());
@@ -38,7 +42,10 @@ public class PostsController {
     }
 
     @GetMapping("/save")
-    public String postsSave() {
+    public String postsSave(@ModelAttribute MemberResponseDto member, Model model) {
+        if (member != null) {
+            model.addAttribute("member", member);
+        }
         return "posts/postsSave";
     }
 
@@ -58,7 +65,7 @@ public class PostsController {
                 model.addAttribute("memberCheck", true);
             }
         }
-
+        postsService.updateView(id);
         model.addAttribute("post", dto);
 
         return "posts/postsRead";
@@ -70,7 +77,6 @@ public class PostsController {
         if (member != null) {
             model.addAttribute("member", member);
         }
-        postsService.updateView(id);
         model.addAttribute("post", dto);
         return "posts/postsUpdate";
     }

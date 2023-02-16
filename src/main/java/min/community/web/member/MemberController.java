@@ -5,6 +5,7 @@ import min.community.service.MemberService;
 import min.community.web.member.dto.MemberRequestDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +24,7 @@ public class MemberController {
     }
 
     @PostMapping("/add")
-    public String save(@ModelAttribute("member") MemberRequestDto member, BindingResult bindingResult) {
+    public String save(@Validated @ModelAttribute("member") MemberRequestDto member, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "members/addMemberForm";
         }
