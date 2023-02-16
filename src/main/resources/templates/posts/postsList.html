@@ -23,7 +23,7 @@
     </thead>
     <tbody id="tbody" th:each="post : ${posts}">
         <td th:text="${post.id}">id</td>
-        <td><a th:href="@{/posts/update/{id}(id=${post.id})}"><span th:text="${post.title}">title</span></a></td>
+        <td><a th:href="@{/posts/read/{id}(id=${post.id})}"><span th:text="${post.title}">title</span></a></td>
         <td th:text="${post.author}">author</td>
         <td th:text="${post.modifiedDate}">modifiedDate</td>
         <td th:text="${post.view}">0</td>
