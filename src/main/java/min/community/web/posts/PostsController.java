@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import min.community.domain.posts.Posts;
 import min.community.domain.posts.PostsRepository;
 import min.community.service.PostsService;
+import min.community.web.member.dto.MemberResponseDto;
+import min.community.web.posts.dto.PostsResponseDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -14,8 +16,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @RequestMapping("/posts")
@@ -48,19 +48,30 @@ public class PostsController {
     }
 
     @GetMapping("/read/{id}")
-    public String postsRead(@PathVariable Long id, Model model) {
-        Optional<Posts> dto = postsRepository.findById(id);
+    public String postsRead(@PathVariable Long id, MemberResponseDto member, Model model) {
+        PostsResponseDto dto = postsService.findById(id);
+
+        if (member != null) {
+            model.addAttribute("member", member);
+
+            if (dto.getAuthor().equals(member.getName())) {
+                model.addAttribute("memberCheck", true);
+            }
+        }
+
         model.addAttribute("post", dto);
 
         return "posts/postsRead";
     }
 
     @GetMapping("/update/{id}")
-    public String update(@PathVariable Long id, Model model) {
-        Optional<Posts> dto = postsRepository.findById(id);
+    public String update(@PathVariable Long id, MemberResponseDto member, Model model) {
+        PostsResponseDto dto = postsService.findById(id);
+        if (member != null) {
+            model.addAttribute("member", member);
+        }
         postsService.updateView(id);
         model.addAttribute("post", dto);
-        model.addAttribute("id", id);
         return "posts/postsUpdate";
     }
 

@@ -2,13 +2,17 @@ package min.community.domain.posts;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import min.community.domain.BaseTimeEntity;
+import min.community.domain.member.Member;
 
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 public class Posts extends BaseTimeEntity {
 
@@ -32,13 +36,9 @@ public class Posts extends BaseTimeEntity {
     @Column(columnDefinition = "integer default 0", nullable = false)
     private int view;
 
-    @Builder
-    public Posts(String title, String content, String author, int view) {
-        this.title = title;
-        this.content = content;
-        this.author = author;
-        this.view = view;
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
 
     public void update(String title, String content) {
         this.title = title;

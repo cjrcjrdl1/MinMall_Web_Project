@@ -2,7 +2,7 @@ package min.community.web.member;
 
 import lombok.RequiredArgsConstructor;
 import min.community.service.MemberService;
-import min.community.web.member.dto.MemberSaveRequestDto;
+import min.community.web.member.dto.MemberRequestDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,12 +18,12 @@ public class MemberController {
     private final MemberService memberService;
 
     @GetMapping("/add")
-    public String addForm(@ModelAttribute("member") MemberSaveRequestDto member) {
+    public String addForm(@ModelAttribute("member") MemberRequestDto member) {
         return "members/addMemberForm";
     }
 
     @PostMapping("/add")
-    public String save(@ModelAttribute("member") MemberSaveRequestDto member, BindingResult bindingResult) {
+    public String save(@ModelAttribute("member") MemberRequestDto member, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "members/addMemberForm";
         }

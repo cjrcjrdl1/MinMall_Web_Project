@@ -28,8 +28,10 @@
       </div>
     </form>
     <a href="/posts" role="button" class="btn btn-secondary">취소</a>
+    <th:block th:if="${memberCheck}">
     <a th:href="@{/posts/update/{id}(id=${id})}" role="button" class="btn btn-primary">수정</a>
     <button type="button" class="btn btn-danger" id="btn-delete">삭제</button>
+    </th:block>
   </div>
 </div>
 <script src="/js/app/index.js"></script>

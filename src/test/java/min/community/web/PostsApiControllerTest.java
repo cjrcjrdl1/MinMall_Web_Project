@@ -2,8 +2,7 @@ package min.community.web;
 
 import min.community.domain.posts.Posts;
 import min.community.domain.posts.PostsRepository;
-import min.community.web.posts.dto.PostsSaveRequestDto;
-import min.community.web.posts.dto.PostsUpdateRequestDto;
+import min.community.web.posts.dto.PostsRequestDto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +42,7 @@ class PostsApiControllerTest {
         String content = "본문";
         String author = "작성자";
 
-        PostsSaveRequestDto requestDto = PostsSaveRequestDto.builder()
+        PostsRequestDto requestDto = PostsRequestDto.builder()
                 .title(title)
                 .content(content)
                 .author(author)

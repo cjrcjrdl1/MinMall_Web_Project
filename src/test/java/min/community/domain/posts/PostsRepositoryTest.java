@@ -1,19 +1,13 @@
 package min.community.domain.posts;
 
-import min.community.service.PostsService;
-import min.community.web.posts.dto.PostsListResponseDto;
-import min.community.web.posts.dto.PostsSaveRequestDto;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class PostsRepositoryTest {

@@ -1,29 +1,34 @@
 package min.community.web.posts.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import min.community.domain.member.Member;
 import min.community.domain.posts.Posts;
 
 @Data
 @NoArgsConstructor
-public class PostsSaveRequestDto {
+@AllArgsConstructor
+@Builder
+public class PostsRequestDto {
+
+    private Long id;
     private String title;
     private String content;
     private String author;
 
-    @Builder
-    public PostsSaveRequestDto(String title, String content, String author) {
-        this.title = title;
-        this.content = content;
-        this.author = author;
-    }
+    private int view;
+    private Member member;
+
 
     public Posts toEntity() {
         return Posts.builder()
                 .title(title)
                 .content(content)
                 .author(author)
+                .member(member)
+                .view(view)
                 .build();
     }
 }

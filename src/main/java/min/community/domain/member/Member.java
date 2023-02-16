@@ -2,6 +2,7 @@ package min.community.domain.member;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,6 +10,7 @@ import min.community.domain.BaseTimeEntity;
 
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Member extends BaseTimeEntity {
 

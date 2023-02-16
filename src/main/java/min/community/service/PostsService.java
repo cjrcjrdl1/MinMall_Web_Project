@@ -1,12 +1,12 @@
 package min.community.service;
 
 import lombok.RequiredArgsConstructor;
+import min.community.domain.member.Member;
+import min.community.domain.member.MemberRepository;
 import min.community.domain.posts.Posts;
 import min.community.domain.posts.PostsRepository;
-import min.community.web.posts.dto.PostsListResponseDto;
+import min.community.web.posts.dto.PostsRequestDto;
 import min.community.web.posts.dto.PostsResponseDto;
-import min.community.web.posts.dto.PostsSaveRequestDto;
-import min.community.web.posts.dto.PostsUpdateRequestDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -20,14 +20,21 @@ import java.util.stream.Collectors;
 @Service
 public class PostsService {
     private final PostsRepository postsRepository;
+    private final MemberRepository memberRepository;
 
     @Transactional
-    public Long save(PostsSaveRequestDto requestDto) {
-        return postsRepository.save(requestDto.toEntity()).getId();
+    public Long save(String name, PostsRequestDto requestDto) {
+        Member member = memberRepository.findByName(name);
+        requestDto.setMember(member);
+
+        Posts posts = requestDto.toEntity();
+        postsRepository.save(posts);
+
+        return posts.getId();
     }
 
     @Transactional
-    public Long update(Long id, PostsUpdateRequestDto requestDto) {
+    public Long update(Long id, PostsRequestDto requestDto) {
         Posts posts = postsRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
 
@@ -41,24 +48,16 @@ public class PostsService {
         return new PostsResponseDto(entity);
     }
 
-    public List<PostsListResponseDto> findAll() {
-//        List<Posts> posts = postsRepository.findAll();
-//        List<PostsResponseDto> responseDtos = new ArrayList<>();
-//
-//        for (Posts post : posts) {
-//            PostsResponseDto postsResponseDto = new PostsResponseDto(post);
-//            responseDtos.add(postsResponseDto);
-//        }
-//
-//        return responseDtos;
+    public List<PostsResponseDto> findAll() {
+
         return postsRepository.findAll().stream()
-                .map(PostsListResponseDto::new)
+                .map(PostsResponseDto::new)
                 .collect(Collectors.toList());
     }
 
-    public List<PostsListResponseDto> findAllDesc() {
+    public List<PostsResponseDto> findAllDesc() {
         return postsRepository.findAllDesc().stream()
-                .map(PostsListResponseDto::new)
+                .map(PostsResponseDto::new)
                 .collect(Collectors.toList());
     }
 
