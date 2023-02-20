@@ -16,6 +16,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @RequestMapping("/posts")
 @Controller
@@ -29,10 +31,12 @@ public class PostsController {
                         @PageableDefault(sort = "id", direction = Sort.Direction.DESC)Pageable pageable, Member member) {
         Page<Posts> posts = postsService.pageList(pageable);
 
+//        List<Posts> posts = postsRepository.findAll();
         if (member != null) {
             model.addAttribute("member", member);
         }
 
+        model.addAttribute("posts", posts);
         model.addAttribute("posts", posts);
         model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
         model.addAttribute("next", pageable.next().getPageNumber());

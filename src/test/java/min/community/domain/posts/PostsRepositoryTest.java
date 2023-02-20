@@ -1,5 +1,7 @@
 package min.community.domain.posts;
 
+import min.community.domain.member.Member;
+import min.community.domain.member.MemberRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,9 @@ class PostsRepositoryTest {
 
     @Autowired
     PostsRepository postsRepository;
+
+    @Autowired
+    MemberRepository memberRepository;
 
     @AfterEach
     public void cleanup() {
@@ -42,4 +47,6 @@ class PostsRepositoryTest {
         assertThat(posts.getContent()).isEqualTo(content);
         assertThat(posts.getAuthor()).isEqualTo(author);
     }
+
+
 }

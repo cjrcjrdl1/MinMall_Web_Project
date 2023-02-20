@@ -17,14 +17,13 @@ import min.community.domain.member.Member;
 public class Posts extends BaseTimeEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "post_id")
+    @GeneratedValue
+    @Column(name = "POSTS_ID")
     private Long id;
 
     @NotNull
     @Column(length = 500)
     private String title;
-
 
     @NotNull
     @Column(columnDefinition = "TEXT")
@@ -37,11 +36,13 @@ public class Posts extends BaseTimeEntity {
     private int view;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
     public void update(String title, String content) {
         this.title = title;
         this.content = content;
     }
+
+
 }

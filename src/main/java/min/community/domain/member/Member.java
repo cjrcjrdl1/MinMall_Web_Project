@@ -1,13 +1,14 @@
 package min.community.domain.member;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import min.community.domain.BaseTimeEntity;
-import min.community.domain.posts.Posts;
 
 @Getter
 @NoArgsConstructor
@@ -16,7 +17,8 @@ import min.community.domain.posts.Posts;
 public class Member extends BaseTimeEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
+    @Column(name = "MEMBER_ID")
     private Long id;
     @Column(nullable = false)
     private String loginId;
@@ -27,12 +29,12 @@ public class Member extends BaseTimeEntity {
     @Column(nullable = false)
     private String password;
 
-
     @Builder
     public Member(String loginId, String name, String password) {
         this.loginId = loginId;
         this.name = name;
         this.password = password;
     }
+
 
 }
