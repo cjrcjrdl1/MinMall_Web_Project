@@ -10,6 +10,9 @@ import org.springframework.web.servlet.HandlerInterceptor;
 @Slf4j
 public class LoginCheckInterceptor implements HandlerInterceptor {
 
+
+
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String requestURI = request.getRequestURI();
